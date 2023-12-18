@@ -27,4 +27,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pid'])) {
 } else {
     echo "Invalid request. User ID not provided for deletion.";
 }
-?>
+

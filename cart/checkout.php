@@ -41,24 +41,24 @@ $allItems = implode(', ', $items);
                 <input type="hidden" name="products" value="<?= $allItems; ?>">
                 <input type="hidden" name="total_price" value="<?= $total_price; ?>">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Имя" required>
+                        <input type="text" name="name" class="form-control" placeholder="Имя" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="ПОТОМ ОТПРАВКУ ИЗ БД РЕАЛИЗОВАТЬ" required>
+                        <input type="email" name="email" class="form-control" placeholder="ПОТОМ ОТПРАВКУ ИЗ БД РЕАЛИЗОВАТЬ" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="phone" class="form-control" placeholder="Введите ваш телефно" required>
+                        <input type="tel" name="phone" class="form-control" placeholder="Введите ваш телефно" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="address" class="form-control" rows="3" cols="10" placeholder="Адрес доставки, комментарий курьеру"></textarea>
+                        <textarea name="address" class="form-control" rows="3" cols="10" placeholder="Адрес доставки, комментарий курьеру"></textarea>
                 </div>
                 <h6 class="text-center lead">Оплата</h6>
                 <div class="form-group">
-                    <select name="paym" class="form-control">
-                        <option value="" selected disabled>-Выберите метод оплаты-</option>
-                        <option value="cod">Наличными после отправки</option>
-                        <option value="perevodbank">Переводом</option>
-                    </select>
+                        <select name="paym" class="form-control">
+                            <option value="" selected disabled>-Выберите метод оплаты-</option>
+                            <option value="cod">Наличными после отправки</option>
+                            <option value="perevodbank">Переводом</option>
+                        </select>
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" value="ЗАКАЗАТЬ" class="btn btn-danger btn-block">

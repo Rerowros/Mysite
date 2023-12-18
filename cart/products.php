@@ -106,14 +106,14 @@ echo '<div class="col-md-4 mb-4">
         // Send product details in the server
         $(".addItemBtn").click(function(e) {
             e.preventDefault();
-            var $form = $(this).closest(".form-submit");
-            var pid = $form.find(".pid").val();
-            var pname = $form.find(".pname").val();
-            var pprice = $form.find(".pprice").val();
-            var pimage = $form.find(".pimage").val();
-            var pcode = $form.find(".pcode").val();
+            const $form = $(this).closest(".form-submit");
+            const pid = $form.find(".pid").val();
+            const pname = $form.find(".pname").val();
+            const pprice = $form.find(".pprice").val();
+            const pimage = $form.find(".pimage").val();
+            const pcode = $form.find(".pcode").val();
 
-            var pqty = $form.find(".pqty").val();
+            const pqty = $form.find(".pqty").val();
 
             $.ajax({
                 url: 'action.php',

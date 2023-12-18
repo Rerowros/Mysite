@@ -97,14 +97,16 @@ session_start();
                         <tr>
                             <td><?= $row['id'] ?></td>
                             <input type="hidden" class="pid" value="<?= $row['id'] ?>">
-                            <td><img src="<?= $row['product_image_link'] ?>" width="50"></td>
+                            <td><img src="<?= $row['product_image_link'] ?>" width="50" alt="<?= $row['product_name'] ?>"></td>
                             <td><?= $row['product_name'] ?></td>
                             <td>
                                 <i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;<?= number_format($row['product_price'],2); ?>
                             </td>
                             <input type="hidden" class="pprice" value="<?= $row['product_price'] ?>">
                             <td>
-                                <input type="number" class="form-control itemQty" value="<?= $row['quantity'] ?>" style="width:75px;">
+                                <label>
+                                    <input type="number" class="form-control itemQty" value="<?= $row['quantity'] ?>" style="width:75px;">
+                                </label>
                             </td>
                             <td><i class="fas fa-ruble-sign"></i>&nbsp;&nbsp;<?= number_format($row['total_price'],2); ?></td>
                             <td>
@@ -140,11 +142,11 @@ session_start();
 
         // Изменить количество товара, не работает пон
         $(".itemQty").on('change', function() {
-            var $el = $(this).closest('tr');
+            const $el = $(this).closest('tr');
 
-            var pid = $el.find(".pid").val();
-            var pprice = $el.find(".pprice").val();
-            var quantity = $el.find(".itemQty").val();
+            const pid = $el.find(".pid").val();
+            const pprice = $el.find(".pprice").val();
+            const quantity = $el.find(".itemQty").val();
             location.reload();
             $.ajax({
                 url: 'action.php',

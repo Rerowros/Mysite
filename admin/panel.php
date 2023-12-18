@@ -199,7 +199,7 @@ if ($result->num_rows > 0) {
 
 <script>
     function toggleTable(tableId) {
-        var table = document.getElementById(tableId);
+        const table = document.getElementById(tableId);
         if (table.style.display === 'none' || table.style.display === '') {
             table.style.display = 'table';
         } else {
@@ -211,7 +211,7 @@ if ($result->num_rows > 0) {
 
 <script>
     function toggleTable(tableId) {
-        var table = document.getElementById(tableId);
+        const table = document.getElementById(tableId);
         if (table.style.display === 'none' || table.style.display === '') {
             table.style.display = 'table';
         } else {
