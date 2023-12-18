@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DynamoDBConfiguration">
+    <option name="databaseConfigurations">
+      <map>
+        <entry key="b757a3e4-946e-4e94-b6a0-d81f96789ab8">
+          <value>
+            <DatabaseConfigInternal>
+              <option name="connectionType" value="Local DynamoDB" />
+              <option name="credentialsType" value="Explicit access key and secret key" />
+              <option name="customEndpoint" value="http://localhost:8000" />
+              <option name="id" value="b757a3e4-946e-4e94-b6a0-d81f96789ab8" />
+              <option name="label" value="DynamoDB" />
+              <option name="region" />
+              <option name="version" value="2" />
+            </DatabaseConfigInternal>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="version" value="2" />
+  </component>
+</project>
