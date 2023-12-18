@@ -1,5 +1,5 @@
 <?php
-require_once('../admin/db.php');
+require_once('../admin/bd.php');
 
 $total_price = 0;
 $allItems = '';

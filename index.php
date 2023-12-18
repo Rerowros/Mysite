@@ -75,7 +75,7 @@
 </section>
 
 <?php
-require_once 'admin/db.php';
+require_once 'admin/bd.php';
     session_start();
 
     if (! isset($_SESSION['authorized'])) {

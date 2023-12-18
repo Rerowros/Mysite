@@ -4,7 +4,7 @@
 // ПРОВЕРКА НА АДМИНИСТАТОРА
 global $conn;
 session_start();
-require_once('db.php');
+require_once('bd.php');
 if (isset($_SESSION["id"]))
 {
     $specificUserId = $_SESSION["id"];

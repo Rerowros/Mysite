@@ -87,7 +87,7 @@ session_start();
                     </thead>
                     <tbody>
                     <?php
-                    require_once('../admin/db.php');
+                    require_once('../admin/bd.php');
                     $stmt = $conn->prepare('SELECT * FROM cart');
                     $stmt->execute();
                     $result = $stmt->get_result();

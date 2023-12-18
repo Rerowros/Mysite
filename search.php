@@ -18,7 +18,7 @@
 </body>
 </html>
 <?php
-require_once 'admin/db.php';
+require_once 'admin/bd.php';
 
 
 if(isset($_GET['query'])) {

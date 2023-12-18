@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('admin/db.php');
+require_once('admin/bd.php');
 $email = $username = $password = "";
 $email_err = $username_err = $password_err = "";
 

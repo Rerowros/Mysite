@@ -55,7 +55,7 @@
     <div id="message"></div>
     <div class="row mt-2 pb-3">
         <?php
-        require_once('../admin/db.php');
+        require_once('../admin/bd.php');
         $stmt = $conn->prepare('SELECT * FROM product');
         $stmt->execute();
         $result = $stmt->get_result();

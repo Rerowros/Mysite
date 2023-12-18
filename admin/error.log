@@ -1,0 +1,16 @@
+Array
+(
+    [time] => 2023-12-18 18:08:52
+    [page] => /admin/delete_users.php
+    [user_id] => 9
+    [message] => Uncaught Exception: Division by zero
+)
+
+Array
+(
+    [time] => 2023-12-18 18:08:57
+    [page] => /admin/delete_users.php
+    [user_id] => 9
+    [message] => Uncaught Exception: Division by zero
+)
+

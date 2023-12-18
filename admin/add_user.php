@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php'; // Include database connection
+require_once 'bd.php'; // Include database connection
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {

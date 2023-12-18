@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../admin/db.php');
+require_once('../admin/bd.php');
 
 if (isset($_POST['pid'])) {
     $pid = $_POST['pid'];
