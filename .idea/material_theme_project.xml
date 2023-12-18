@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MaterialThemeProjectConfig">
+    <option name="isActive" value="true" />
+    <option name="isHighlightColorEnabled" value="true" />
+    <option name="upperCaseTabs" value="true" />
+    <option name="highlightColor" value="f9826c" />
+  </component>
+</project>
