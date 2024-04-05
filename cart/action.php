@@ -2,17 +2,25 @@
 session_start();
 require_once('../admin/bd.php');
 
+function sanitizeInput($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 if (isset($_POST['pid'])) {
-    $pid = $_POST['pid'];
-    $pname = $_POST['pname'];
-    $pprice = $_POST['pprice'];
-    $pimage = $_POST['pimage'];
-    $pcode = $_POST['pcode'];
-    $pqty = $_POST['pqty'];
+    $pid = sanitizeInput($_POST['pid']);
+    $pname = sanitizeInput($_POST['pname']);
+    $pprice = sanitizeInput($_POST['pprice']);
+    $pimage = sanitizeInput($_POST['pimage']);
+    $pcode = sanitizeInput($_POST['pcode']);
+    $pqty = sanitizeInput($_POST['pqty']);
     $total_price = $pprice * $pqty;
 
     $stmt = $conn->prepare('SELECT product_code FROM cart WHERE product_code=?');
-    $stmt->bind_param('s',$pcode);
+    $stmt->bind_param('s', $pcode);
     $stmt->execute();
     $res = $stmt->get_result();
     $r = $res->fetch_assoc();
@@ -20,7 +28,7 @@ if (isset($_POST['pid'])) {
 
     if (!$code) {
         $query = $conn->prepare('INSERT INTO cart (product_name,product_price,product_image_link,quantity,total_price,product_code) VALUES (?,?,?,?,?,?)');
-        $query->bind_param('ssssss',$pname,$pprice,$pimage,$pqty,$total_price,$pcode);
+        $query->bind_param('ssssss', $pname, $pprice, $pimage, $pqty, $total_price, $pcode);
         $query->execute();
 
         echo '<div class="alert alert-success alert-dismissible mt-2">
@@ -49,7 +57,7 @@ if (isset($_GET['remove'])) {
     $id = $_GET['remove'];
 
     $stmt = $conn->prepare('DELETE FROM cart WHERE id=?');
-    $stmt->bind_param('i',$id);
+    $stmt->bind_param('i', $id);
     $stmt->execute();
 
     $_SESSION['showAlert'] = 'block';
@@ -75,7 +83,7 @@ if (isset($_POST['quantity'])) {
     $tprice = $quantity * $pprice;
 
     $stmt = $conn->prepare('UPDATE cart SET quantity=?, total_price=? WHERE id=?');
-    $stmt->bind_param('isi',$quantity,$tprice,$pid);
+    $stmt->bind_param('isi', $quantity, $tprice, $pid);
     $stmt->execute();
 }
 
@@ -91,8 +99,8 @@ if (isset($_POST['action']) && isset($_POST['action']) == 'order') {
 
     $data = '';
 
-    $stmt = $conn->prepare('INSERT INTO orders (name,email,phone,address,paym,products, total_price )VALUES(?,?,?,?,?,?,?)');
-    $stmt->bind_param('sssssss',$name,$email,$phone,$address,$paym,$products, $total_price );
+    $stmt = $conn->prepare('INSERT INTO orders (name,email,phone,address,paym,products )VALUES(?,?,?,?,?,?)');
+    $stmt->bind_param('sssssss', $name, $email, $phone, $address, $paym, $products, $total_price);
     $stmt->execute();
     $stmt2 = $conn->prepare('DELETE FROM cart');
     $stmt2->execute();
@@ -102,7 +110,7 @@ if (isset($_POST['action']) && isset($_POST['action']) == 'order') {
 								<h4>' . $name . '</h4>
 								<h4>' . $email . '</h4>
 								<h4>' . $phone . '</h4>
-								<h4>' . number_format($total_price,2) . '</h4>
+								<h4>' . number_format($total_price, 2) . '</h4>
 								<h4>' . $paym . '</h4>
 						  </div>';
     echo $data;

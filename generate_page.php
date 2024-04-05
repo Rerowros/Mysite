@@ -15,24 +15,24 @@
 </head>
 <body>
 
-</body>
-</html>
 <?php
 require_once 'admin/bd.php';
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $productId = $_GET['id'];
 
-    $sql = "SELECT * FROM product WHERE id = $productId";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT * FROM product WHERE id = ?");
+    $stmt->bind_param('i', $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $productName = $row['product_name'];
-        $productImage = $row['product_image_link'];
-        $productPrice = $row['product_price'];
+        $productName = htmlspecialchars($row['product_name']);
+        $productImage = htmlspecialchars($row['product_image_link']);
+        $productPrice = htmlspecialchars($row['product_price']);
 
         echo "<h1>$productName</h1>";
-        echo '<img src="'.$productImage.'" class="card-img-top, product-img" alt="Product Image">';
+        echo '<img src="' . $productImage . '" class="card-img-top, product-img" alt="Product Image">';
         echo "<p>Price: $productPrice</p>";
         echo '<form action="" class="form-submit">
                 <div class="row p-2">
@@ -40,14 +40,14 @@ if(isset($_GET['id'])) {
                         <b>Количество : </b>
                     </div>
                     <div class="col-md-6">
-                        <input type="number" class="form-control pqty" value="'. $row['product_qty'].'">
+                        <input type="number" class="form-control pqty" value="' . htmlspecialchars($row['product_qty']) . '">
                     </div>
                 </div>
-                <input type="hidden" class="pid" value="'.$row['id'].'">
-                <input type="hidden" class="pname" value="'.$row['product_name'].'">
-                <input type="hidden" class="pprice" value="'.$row['product_price'].'">
-                <input type="hidden" class="pimage" value="'.$row['product_image_link'].'">
-                <input type="hidden" class="pcode" value="'.$row['product_code'].'">
+                <input type="hidden" class="pid" value="' . htmlspecialchars($row['id']) . '">
+                <input type="hidden" class="pname" value="' . $productName . '">
+                <input type="hidden" class="pprice" value="' . $productPrice . '">
+                <input type="hidden" class="pimage" value="' . $productImage . '">
+                <input type="hidden" class="pcode" value="' . htmlspecialchars($row['product_code']) . '">
                 <button class="btn btn-info btn-block addItemBtn"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Добавить в корзину</button>
             </form>';
     } else {
@@ -59,14 +59,17 @@ if(isset($_GET['id'])) {
 
 $conn->close();
 ?>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-        $(".addItemBtn").click(function(e) {
+        $(".addItemBtn").click(function (e) {
             e.preventDefault();
             const $form = $(this).closest(".form-submit");
             const pid = $form.find(".pid").val();
@@ -88,7 +91,7 @@ $conn->close();
                     pimage: pimage,
                     pcode: pcode
                 },
-                success: function(response) {
+                success: function (response) {
                     $("#message").html(response);
                     window.scrollTo(0, 0);
                     load_cart_item_number();
@@ -98,3 +101,6 @@ $conn->close();
 
     });
 </script>
+
+</body>
+</html>

@@ -2,7 +2,8 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-function logError($message) {
+function logError($message)
+{
     $currentPage = $_SERVER['REQUEST_URI'] ?? 'Unknown Page';
 
     $userID = $_SESSION['id'] ?? 'Unknown User';
@@ -17,7 +18,8 @@ function logError($message) {
     file_put_contents('error.log', print_r($errorData, true) . PHP_EOL, FILE_APPEND);
 }
 
-function globalExceptionHandler($exception) {
+function globalExceptionHandler($exception)
+{
     logError("Uncaught Exception: " . $exception->getMessage());
     // You can also add redirection or other error handling logic here
 }

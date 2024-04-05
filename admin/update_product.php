@@ -22,17 +22,17 @@ try {
                     product_price = :product_price,
                     product_image_link = :product_image_link,
                     product_code = :product_code
-                    where id = :id";
+                    WHERE id = :id";
 
             // Подготовка запроса к выполнению
             $stmt = $conn->prepare($sql);
 
-            // бинд параметров к переменным
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':product_name', $product_name);
-            $stmt->bindParam(':product_price', $product_price);
-            $stmt->bindParam(':product_image_link', $product_image_link);
-            $stmt->bindParam(':product_code', $product_code);
+            // Bind parameters to variables
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
+            $stmt->bindParam(':product_price', $product_price, PDO::PARAM_STR);
+            $stmt->bindParam(':product_image_link', $product_image_link, PDO::PARAM_STR);
+            $stmt->bindParam(':product_code', $product_code, PDO::PARAM_STR);
 
             // Выполнение запроса
             $stmt->execute();
@@ -47,6 +47,8 @@ try {
         echo "Нет post запроса";
     }
 } catch (PDOException $e) {
+    echo "Database Error: " . $e->getMessage();
+} catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
 

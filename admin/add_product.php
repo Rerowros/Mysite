@@ -28,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
-    }
-    finally // выполняется независимо от ошибок.
+    } finally // выполняется независимо от ошибок.
     {
         $conn = null;
     }

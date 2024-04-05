@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
 
         if ($stmt->execute()) {
             header("Location: panel.php");
-            exit;        }
+            exit;
+        }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     } finally {
