@@ -8,8 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pid'])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // $result = 10 / 0; // Removed as it's causing a division by zero error
-        // $undefinedVariable; // Removed as it's an undefined variable
+
 
         // Prepare a DELETE statement
         $stmt = $conn->prepare("DELETE FROM users WHERE id = :user_id");
